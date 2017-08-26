@@ -42,4 +42,24 @@ while True:
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                print('Forward')
+            elif event.key == pygame.K_s:
+                print('Backward')
+            elif event.key == pygame.K_a:
+                print('Stroll Left')
+            elif event.key == pygame.K_d:
+                print('Stroll Right')
+            elif event.key == pygame.K_UP:
+                print('Up')
+            elif event.key == pygame.K_DOWN:
+                print ('Down')
+            elif event.key == pygame.K_LEFT:
+                print('Left')
+            elif event.key == pygame.K_RIGHT:
+                print('Right')
+        if event.type == pygame.MOUSEBUTTONUP:
+            pos = pygame.mouse.get_pos()
+            print (pos)
 sys.exit()
