@@ -40,15 +40,9 @@ pygame.display.update()
 
 #Run the game loop
 while True:
-    windowSurface.fill(WHITE)
-    map.render(windowSurface)
-    windowSurface.blit(text,textRect)
-    chr.render(windowSurface)
-    pygame.display.update()
-
     for event in pygame.event.get():
         if event.type == QUIT:
-            pygame.quit()
+            sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
                 chr.move(chr.FORWARD)
@@ -73,4 +67,10 @@ while True:
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
             print (pos)
+
+    windowSurface.fill(WHITE)
+    map.render(windowSurface)
+    windowSurface.blit(text,textRect)
+    chr.render(windowSurface)
+    pygame.display.update()
 sys.exit()
