@@ -26,9 +26,6 @@ textRect.centery = windowSurface.get_rect().centery
 #Draw the white background onto the surface
 windowSurface.fill(WHITE)
 
-r = pygame.Rect(100,100,100,100)
-windowSurface.fill(Color("red"), r)
-
 #Draw the text onto the surface
 windowSurface.blit(text,textRect)
 
@@ -36,24 +33,34 @@ map = Map()
 map.render(windowSurface)
 
 chr = Character()
-chr.render(windowSurface)
+# chr.render(windowSurface)
 
 #Draw the window onto the screen
 pygame.display.update()
 
 #Run the game loop
 while True:
+    windowSurface.fill(WHITE)
+    map.render(windowSurface)
+    windowSurface.blit(text,textRect)
+    chr.render(windowSurface)
+    pygame.display.update()
+
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
+                chr.move(chr.FORWARD)
                 print('Forward')
             elif event.key == pygame.K_s:
+                chr.move(chr.BACKWARD)
                 print('Backward')
             elif event.key == pygame.K_a:
+                chr.move(chr.LEFT)
                 print('Stroll Left')
             elif event.key == pygame.K_d:
+                chr.move(chr.RIGHT)
                 print('Stroll Right')
             elif event.key == pygame.K_UP:
                 print('Up')
