@@ -2,6 +2,7 @@ import pygame, sys
 from pygame.locals import *
 from map import Map
 from character import Character
+from projectiles import Projectile
 
 #Set up pygame
 pygame.init()
@@ -64,6 +65,7 @@ while True:
             if event.key == pygame.K_UP:
                 print('Up')
             elif event.key == pygame.K_DOWN:
+                chr.shoot(windowSurface)
                 print ('Down')
             elif event.key == pygame.K_LEFT:
                 print('Left')
@@ -77,5 +79,6 @@ while True:
     map.render(windowSurface)
     windowSurface.blit(text,textRect)
     chr.render(windowSurface)
+    Projectile.update(windowSurface)
     pygame.display.update()
 sys.exit()
