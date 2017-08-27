@@ -1,6 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 from map import Map
+from character import Character
 
 #Set up pygame
 pygame.init()
@@ -33,6 +34,9 @@ windowSurface.blit(text,textRect)
 
 map = Map()
 map.render(windowSurface)
+
+chr = Character()
+chr.render(windowSurface)
 
 #Draw the window onto the screen
 pygame.display.update()
