@@ -38,25 +38,30 @@ chr = Character()
 #Draw the window onto the screen
 pygame.display.update()
 
+clock = pygame.time.Clock()
 #Run the game loop
 while True:
+    clock.tick(60)
+
+    key_pressed = pygame.key.get_pressed()
+    if key_pressed[pygame.K_w]:
+        chr.move(chr.FORWARD)
+        print('Forward')
+    elif key_pressed[pygame.K_s]:
+        chr.move(chr.BACKWARD)
+        print('Backward')
+    elif key_pressed[pygame.K_a]:
+        chr.move(chr.LEFT)
+        print('Stroll Left')
+    elif key_pressed[pygame.K_d]:
+        chr.move(chr.RIGHT)
+        print('Stroll Right')
+
     for event in pygame.event.get():
         if event.type == QUIT:
             sys.exit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
-                chr.move(chr.FORWARD)
-                print('Forward')
-            elif event.key == pygame.K_s:
-                chr.move(chr.BACKWARD)
-                print('Backward')
-            elif event.key == pygame.K_a:
-                chr.move(chr.LEFT)
-                print('Stroll Left')
-            elif event.key == pygame.K_d:
-                chr.move(chr.RIGHT)
-                print('Stroll Right')
-            elif event.key == pygame.K_UP:
+            if event.key == pygame.K_UP:
                 print('Up')
             elif event.key == pygame.K_DOWN:
                 print ('Down')
@@ -66,7 +71,7 @@ while True:
                 print('Right')
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
-            print (pos)
+            print(pos)
 
     windowSurface.fill(WHITE)
     map.render(windowSurface)
