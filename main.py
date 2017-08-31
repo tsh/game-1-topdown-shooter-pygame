@@ -64,13 +64,16 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
+                chr.shoot(windowSurface, Vector2(0, -1))
                 print('Up')
             elif event.key == pygame.K_DOWN:
                 chr.shoot(windowSurface, Vector2(0, 1))
                 print('Down')
             elif event.key == pygame.K_LEFT:
+                chr.shoot(windowSurface, Vector2(-1, 0))
                 print('Left')
             elif event.key == pygame.K_RIGHT:
+                chr.shoot(windowSurface, Vector2(1, 0))
                 print('Right')
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()

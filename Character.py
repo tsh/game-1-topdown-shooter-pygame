@@ -1,5 +1,8 @@
 import pygame
 from pygame.locals import *
+from pygame.math import Vector2
+
+from projectiles import Projectile
 
 
 class Character(object):
@@ -15,7 +18,6 @@ class Character(object):
         self.speed = 10
 
     def render(self, surface):
-        r = pygame.Rect(self.x*self.size, self.y*self.size, self.size, self.size)
         pygame.draw.circle(surface, Color("green"), (self.x, self.y), self.size)
 
     def move(self, direction):
@@ -27,3 +29,7 @@ class Character(object):
             self.y -= self.speed
         elif direction == self.BACKWARD:
             self.y += self.speed
+
+    def shoot(self, surface, direction: Vector2):
+        prj = Projectile(self.x, self.y, direction)
+        Projectile.projectiles.append(prj)
