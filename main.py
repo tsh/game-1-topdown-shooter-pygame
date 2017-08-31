@@ -12,9 +12,12 @@ pygame.init()
 windowSurface = pygame.display.set_mode((500, 400), 0 , 32)
 pygame.display.set_caption('Hello World')
 
-#Set up the colors
-BLACK = (0,0,0)
-WHITE = (255,255,255)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+UP = Vector2(0, -1)
+DOWN = Vector2(0, 1)
+LEFT = Vector2(-1, 0)
+RIGHT = Vector2(1, 0)
 
 #Set up fonts
 basicFont = pygame.font.SysFont(None, 48)
@@ -64,16 +67,16 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                chr.shoot(windowSurface, Vector2(0, -1))
+                chr.shoot(windowSurface, UP)
                 print('Up')
             elif event.key == pygame.K_DOWN:
-                chr.shoot(windowSurface, Vector2(0, 1))
+                chr.shoot(windowSurface, DOWN)
                 print('Down')
             elif event.key == pygame.K_LEFT:
-                chr.shoot(windowSurface, Vector2(-1, 0))
+                chr.shoot(windowSurface, LEFT)
                 print('Left')
             elif event.key == pygame.K_RIGHT:
-                chr.shoot(windowSurface, Vector2(1, 0))
+                chr.shoot(windowSurface, RIGHT)
                 print('Right')
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
