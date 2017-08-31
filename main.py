@@ -1,5 +1,6 @@
 import pygame, sys
 from pygame.locals import *
+from pygame.math import Vector2
 from map import Map
 from character import Character
 from projectiles import Projectile
@@ -65,8 +66,8 @@ while True:
             if event.key == pygame.K_UP:
                 print('Up')
             elif event.key == pygame.K_DOWN:
-                chr.shoot(windowSurface)
-                print ('Down')
+                chr.shoot(windowSurface, Vector2(0, 1))
+                print('Down')
             elif event.key == pygame.K_LEFT:
                 print('Left')
             elif event.key == pygame.K_RIGHT:
