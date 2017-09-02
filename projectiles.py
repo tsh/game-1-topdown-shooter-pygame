@@ -13,11 +13,11 @@ class Projectile(object):
         self.direction = direction
 
     def render(self, surface):
-        pygame.draw.circle(surface, Color("yellow"), (self.x, self.y), self.size)
+        pygame.draw.circle(surface, Color("yellow"), (int(self.x), int(self.y)), self.size)
 
     @classmethod
     def update(cls, surface):
         for prj in cls.projectiles:
-            prj.x += int(prj.speed * prj.direction.x)
-            prj.y += int(prj.speed * prj.direction.y)
+            prj.x += prj.speed * prj.direction.x
+            prj.y += prj.speed * prj.direction.y
             prj.render(surface)

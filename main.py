@@ -80,6 +80,7 @@ while True:
                 print('Right')
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
+            chr.shoot(windowSurface, Vec2d(pos))
             print(pos)
 
     windowSurface.fill(WHITE)

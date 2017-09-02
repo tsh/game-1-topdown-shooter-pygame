@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from pygame.math import Vector2
+from pymunk.vec2d import Vec2d
 
 from projectiles import Projectile
 
@@ -30,6 +30,7 @@ class Character(object):
         elif direction == self.BACKWARD:
             self.y += self.speed
 
-    def shoot(self, surface, direction: Vector2):
+    def shoot(self, surface, direction: Vec2d):
+        direction = (direction - Vec2d(self.x, self.y)).normalized()
         prj = Projectile(self.x, self.y, direction)
         Projectile.projectiles.append(prj)
