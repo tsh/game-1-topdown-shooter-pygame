@@ -1,6 +1,6 @@
 import pygame, sys
 from pygame.locals import *
-from pygame.math import Vector2
+from pymunk.vec2d import Vec2d
 from map import Map
 from character import Character
 from projectiles import Projectile
@@ -14,10 +14,10 @@ pygame.display.set_caption('Hello World')
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-UP = Vector2(0, -1)
-DOWN = Vector2(0, 1)
-LEFT = Vector2(-1, 0)
-RIGHT = Vector2(1, 0)
+UP = Vec2d(0, -1)
+DOWN = Vec2d(0, 1)
+LEFT = Vec2d(-1, 0)
+RIGHT = Vec2d(1, 0)
 
 #Set up fonts
 basicFont = pygame.font.SysFont(None, 48)
