@@ -19,7 +19,13 @@ HEIGHT = 400
 
 class GameObjectManager(object):
     def __init__(self, width, height):
-        self.rect = (0, 0, width, height)
+        self.rect = Rect(0, 0, width, height)
+
+    def check_boundry(self):
+        # if isinstance(obj, Vec2d):
+        for prj in Projectile.projectiles:
+            if not self.rect.collidepoint((prj.x, prj.y)):
+                prj.remove = True
 
 
 #Set up pygame
@@ -84,6 +90,8 @@ while True:
     map.render(windowSurface)
     windowSurface.blit(text,textRect)
     chr.render(windowSurface)
+    gom.check_boundry()
+    print (Projectile.projectiles)
     Projectile.update(windowSurface)
     pygame.display.update()
 sys.exit()
