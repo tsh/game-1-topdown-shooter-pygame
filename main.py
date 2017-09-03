@@ -21,27 +21,13 @@ RIGHT = Vec2d(1, 0)
 
 #Set up fonts
 basicFont = pygame.font.SysFont(None, 48)
-
-#Set up the text
 text = basicFont.render('HELLO WORLD', True, BLACK)
 textRect = text.get_rect()
 textRect.centerx = windowSurface.get_rect().centerx
 textRect.centery = windowSurface.get_rect().centery
 
-#Draw the white background onto the surface
-windowSurface.fill(WHITE)
-
-#Draw the text onto the surface
-windowSurface.blit(text,textRect)
-
 map = Map()
-map.render(windowSurface)
-
 chr = Character()
-# chr.render(windowSurface)
-
-#Draw the window onto the screen
-pygame.display.update()
 
 clock = pygame.time.Clock()
 #Run the game loop
