@@ -1,16 +1,11 @@
 import pygame, sys
+from pygame import Rect
 from pygame.locals import *
 from pymunk.vec2d import Vec2d
 from map import Map
 from character import Character
 from projectiles import Projectile
 
-#Set up pygame
-pygame.init()
-
-#Set up the window
-windowSurface = pygame.display.set_mode((500, 400), 0 , 32)
-pygame.display.set_caption('Hello World')
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -18,6 +13,21 @@ UP = Vec2d(0, -1)
 DOWN = Vec2d(0, 1)
 LEFT = Vec2d(-1, 0)
 RIGHT = Vec2d(1, 0)
+WIDTH = 500
+HEIGHT = 400
+
+
+class GameObjectManager(object):
+    def __init__(self, width, height):
+        self.rect = (0, 0, width, height)
+
+
+#Set up pygame
+pygame.init()
+
+#Set up the window
+windowSurface = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
+pygame.display.set_caption('Hello World')
 
 #Set up fonts
 basicFont = pygame.font.SysFont(None, 48)
@@ -28,6 +38,7 @@ textRect.centery = windowSurface.get_rect().centery
 
 map = Map()
 chr = Character()
+gom = GameObjectManager(WIDTH, HEIGHT)
 
 clock = pygame.time.Clock()
 #Run the game loop
@@ -53,20 +64,20 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                chr.shoot(windowSurface, UP)
+                chr.shoot(windowSurface, direction=UP)
                 print('Up')
             elif event.key == pygame.K_DOWN:
-                chr.shoot(windowSurface, DOWN)
+                chr.shoot(windowSurface, direction=DOWN)
                 print('Down')
             elif event.key == pygame.K_LEFT:
-                chr.shoot(windowSurface, LEFT)
+                chr.shoot(windowSurface, direction=LEFT)
                 print('Left')
             elif event.key == pygame.K_RIGHT:
-                chr.shoot(windowSurface, RIGHT)
+                chr.shoot(windowSurface, direction=RIGHT)
                 print('Right')
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
-            chr.shoot(windowSurface, Vec2d(pos))
+            chr.shoot(windowSurface, target=Vec2d(pos))
             print(pos)
 
     windowSurface.fill(WHITE)

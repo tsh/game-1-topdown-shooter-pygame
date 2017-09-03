@@ -30,7 +30,12 @@ class Character(object):
         elif direction == self.BACKWARD:
             self.y += self.speed
 
-    def shoot(self, surface, direction: Vec2d):
-        direction = (direction - Vec2d(self.x, self.y)).normalized()
-        prj = Projectile(self.x, self.y, direction)
+    def shoot(self, surface, direction: Vec2d=None, target: Vec2d=None):
+        if direction:
+            # shoot in a straight line
+            prj = Projectile(self.x, self.y, direction)
+        else:
+            # shoot in specific target
+            target = (target - Vec2d(self.x, self.y)).normalized()
+            prj = Projectile(self.x, self.y, target)
         Projectile.projectiles.append(prj)
