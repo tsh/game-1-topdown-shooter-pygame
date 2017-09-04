@@ -39,3 +39,11 @@ class Character(object):
             target = (target - Vec2d(self.x, self.y)).normalized()
             prj = Projectile(self.x, self.y, target)
         Projectile.projectiles.append(prj)
+
+
+class Enemy(object):
+    def __init__(self):
+        self.pos = Vec2d(200, 200)
+
+    def render(self, surface):
+        pygame.draw.circle(surface, Color("grey"), self.pos, 10)

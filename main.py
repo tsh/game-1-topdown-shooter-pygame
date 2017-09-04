@@ -3,7 +3,7 @@ from pygame import Rect
 from pygame.locals import *
 from pymunk.vec2d import Vec2d
 from map import Map
-from character import Character
+from character import Character, Enemy
 from projectiles import Projectile
 
 
@@ -44,6 +44,7 @@ textRect.centery = windowSurface.get_rect().centery
 
 map = Map()
 chr = Character()
+enm = Enemy()
 gom = GameObjectManager(WIDTH, HEIGHT)
 
 clock = pygame.time.Clock()
@@ -90,8 +91,8 @@ while True:
     map.render(windowSurface)
     windowSurface.blit(text,textRect)
     chr.render(windowSurface)
+    enm.render(windowSurface)
     gom.check_boundry()
-    print (Projectile.projectiles)
     Projectile.update(windowSurface)
     pygame.display.update()
 sys.exit()
