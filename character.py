@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from pygame import Rect
 from pymunk.vec2d import Vec2d
 
 from projectiles import Projectile
@@ -12,32 +13,34 @@ class Character(object):
     BACKWARD = 'backward'
 
     def __init__(self):
-        self.x = 0
-        self.y = 0
         self.size = 50
+        self.rect = Rect(0, 0, self.size, self.size)
+        self.rect.centerx = 0
+        self.rect.centery = 0
         self.speed = 10
 
     def render(self, surface):
-        pygame.draw.circle(surface, Color("green"), (self.x, self.y), self.size)
+        print (self.rect)
+        pygame.draw.circle(surface, Color("green"), (self.rect.centerx, self.rect.centery), self.size)
 
     def move(self, direction):
         if direction == self.LEFT:
-            self.x -= self.speed
+            self.rect.centerx -= self.speed
         elif direction == self.RIGHT:
-            self.x += self.speed
+            self.rect.centerx += self.speed
         elif direction == self.FORWARD:
-            self.y -= self.speed
+            self.rect.centery -= self.speed
         elif direction == self.BACKWARD:
-            self.y += self.speed
+            self.rect.centery += self.speed
 
     def shoot(self, surface, direction: Vec2d=None, target: Vec2d=None):
         if direction:
             # shoot in a straight line
-            prj = Projectile(self.x, self.y, direction)
+            prj = Projectile(self.rect.centerx, self.rect.centery, direction)
         else:
             # shoot in specific target
-            target = (target - Vec2d(self.x, self.y)).normalized()
-            prj = Projectile(self.x, self.y, target)
+            target = (target - Vec2d(self.rect.centerx, self.rect.centery)).normalized()
+            prj = Projectile(self.rect.centerx, self.rect.centery, target)
         Projectile.projectiles.append(prj)
 
 

@@ -15,7 +15,7 @@ class Camera(object):
         # l, t, _, _ = target_rect # l = left,  t = top
         # _, _, w, h = self.viewport
         # self.viewport = Rect(-l + HALF_WIDTH, -t + HALF_HEIGHT, w, h)
-        cx, cy = target.x, target.y
+        cx, cy = target.rect.centerx, target.rect.centery
         r = self.viewport
         r.centerx = cx
         r.centery = cy
