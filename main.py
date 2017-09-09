@@ -5,6 +5,7 @@ from pymunk.vec2d import Vec2d
 from map import Map
 from character import Character, Enemy
 from projectiles import Projectile
+from camera import Camera
 
 
 BLACK = (0, 0, 0)
@@ -46,6 +47,7 @@ map = Map()
 chr = Character()
 enm = Enemy()
 gom = GameObjectManager(WIDTH, HEIGHT)
+camera = Camera(WIDTH, HEIGHT)
 
 clock = pygame.time.Clock()
 #Run the game loop
@@ -95,4 +97,6 @@ while True:
     gom.check_boundry()
     Projectile.update(windowSurface)
     pygame.display.update()
+
+    camera.move(chr)
 sys.exit()
