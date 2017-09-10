@@ -16,6 +16,8 @@ LEFT = Vec2d(-1, 0)
 RIGHT = Vec2d(1, 0)
 WIDTH = 500
 HEIGHT = 400
+HALF_WIDTH = int(WIDTH / 2)
+HALF_HEIGHT = int(HEIGHT / 2)
 
 
 class GameObjectManager(object):
@@ -44,7 +46,7 @@ textRect.centerx = windowSurface.get_rect().centerx
 textRect.centery = windowSurface.get_rect().centery
 
 map = Map()
-chr = Character()
+chr = Character(HALF_WIDTH, HALF_HEIGHT)
 enm = Enemy()
 gom = GameObjectManager(WIDTH, HEIGHT)
 camera = Camera(WIDTH, HEIGHT)
@@ -57,15 +59,19 @@ while True:
     key_pressed = pygame.key.get_pressed()
     if key_pressed[pygame.K_w]:
         chr.move(chr.FORWARD)
+        camera.viewport.centery -= 10
         print('Forward')
     elif key_pressed[pygame.K_s]:
         chr.move(chr.BACKWARD)
+        camera.viewport.centery += 10
         print('Backward')
     elif key_pressed[pygame.K_a]:
         chr.move(chr.LEFT)
+        camera.viewport.centerx -= 10
         print('Stroll Left')
     elif key_pressed[pygame.K_d]:
         chr.move(chr.RIGHT)
+        camera.viewport.centerx += 10
         print('Stroll Right')
 
     for event in pygame.event.get():
@@ -89,8 +95,7 @@ while True:
             chr.shoot(windowSurface, target=Vec2d(pos))
             print(pos)
 
-    windowSurface.fill(WHITE)
-    map.render(windowSurface)
+    map.render(windowSurface, camera)
     windowSurface.blit(text,textRect)
     chr.render(windowSurface)
     enm.render(windowSurface)

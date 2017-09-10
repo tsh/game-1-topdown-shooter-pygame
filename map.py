@@ -5,10 +5,10 @@ from pygame.locals import *
 class Map(object):
     def __init__(self):
         self.size = 100
-        self.map = [[2, 0, 1, 0, 1, 0, 2],
+        self.map = [[1, 0, 1, 0, 1, 0, 2],
                     [0, 1]]
 
-    def render(self, wsurface):
+    def render(self, wsurface, camera):
         surface = pygame.Surface((1000, 1000))
         surface.fill((255, 255, 255))
         for irow, row in enumerate(self.map):
@@ -22,4 +22,6 @@ class Map(object):
                 elif tile == 2:
                     color = "orange"
                 surface.fill(Color(color), r)
-        wsurface.blit(surface, (-120, -20))
+        x, y = camera.viewport.x, camera.viewport.y
+        print ('camera map ', camera.viewport)
+        wsurface.blit(surface, (-x, -y))

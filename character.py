@@ -12,11 +12,11 @@ class Character(object):
     FORWARD = 'forward'
     BACKWARD = 'backward'
 
-    def __init__(self):
+    def __init__(self, center_x, center_y):
         self.size = 50
         self.rect = Rect(0, 0, self.size, self.size)
-        self.rect.centerx = 0
-        self.rect.centery = 0
+        self.rect.centerx = center_x
+        self.rect.centery = center_y
         self.speed = 10
 
     def render(self, surface):
