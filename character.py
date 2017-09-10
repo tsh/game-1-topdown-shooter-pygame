@@ -20,7 +20,6 @@ class Character(object):
         self.speed = 10
 
     def render(self, surface):
-        print (self.rect)
         pygame.draw.circle(surface, Color("green"), (self.rect.centerx, self.rect.centery), self.size)
 
     def move(self, direction):

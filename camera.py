@@ -12,12 +12,15 @@ class Camera(object):
         return target.rect.move(self.viewport.topleft)
 
     def move(self, target):
-        # l, t, _, _ = target_rect # l = left,  t = top
+        # l, t, _, _ = target.rect # l = left,  t = top
         # _, _, w, h = self.viewport
         # self.viewport = Rect(-l + HALF_WIDTH, -t + HALF_HEIGHT, w, h)
-        cx, cy = target.rect.centerx, target.rect.centery
-        r = self.viewport
-        r.centerx = cx
-        r.centery = cy
-        self.viewport = r
+
+        # cx, cy = target.rect.centerx, target.rect.centery
+        # r = self.viewport
+        # r.centerx = cx
+        # r.centery = cy
+        # self.viewport = r
+        # print (self.viewport)
+        pass
 
