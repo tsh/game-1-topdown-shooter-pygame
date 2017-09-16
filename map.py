@@ -22,6 +22,8 @@ class Map(object):
                 elif tile == 2:
                     color = "orange"
                 surface.fill(Color(color), r)
-        x, y = camera.viewport.x, camera.viewport.y
+        x = camera.viewport.x if camera.viewport.x > 0 else 0
+        y = camera.viewport.y if camera.viewport.y > 0 else 0
+
         print ('camera map ', camera.viewport)
         wsurface.blit(surface, (-x, -y))
