@@ -8,9 +8,10 @@ class Map(object):
         self.map = [[1, 0, 1, 0, 1, 0, 2],
                     [0, 1]]
 
-    def render(self, wsurface, camera):
-        surface = pygame.Surface((1000, 1000))
-        surface.fill((255, 255, 255))
+    def render(self, window_surface, camera):
+        wrld_size = 1000
+        wrld_srf = pygame.Surface((wrld_size, wrld_size))
+        wrld_srf.fill((255, 255, 255))
         for irow, row in enumerate(self.map):
             for icol, tile in enumerate(row):
                 r = pygame.Rect(icol*self.size, irow*self.size, self.size, self.size)
@@ -21,9 +22,9 @@ class Map(object):
                     color = "red"
                 elif tile == 2:
                     color = "orange"
-                surface.fill(Color(color), r)
+                wrld_srf.fill(Color(color), r)
         x = camera.viewport.x if camera.viewport.x > 0 else 0
         y = camera.viewport.y if camera.viewport.y > 0 else 0
 
         print ('camera map ', camera.viewport)
-        wsurface.blit(surface, (-x, -y))
+        window_surface.blit(wrld_srf, (-x, -y))
