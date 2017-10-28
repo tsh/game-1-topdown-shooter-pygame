@@ -6,7 +6,8 @@ HALF_HEIGHT = 400 / 2
 
 class Camera(object):
     def __init__(self, width, height):
-        self.viewport = Rect(0, 0, width, height)
+        expected_map_tile = 300
+        self.viewport = Rect(0, 0, width + expected_map_tile, height + expected_map_tile)
 
     def apply(self, target):
         return target.rect.move(self.viewport.topleft)
