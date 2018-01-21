@@ -25,10 +25,13 @@ class GameObjectManager(object):
         self.rect = Rect(0, 0, width, height)
 
     def check_boundry(self):
-        # if isinstance(obj, Vec2d):
         for prj in Projectile.projectiles:
             if not self.rect.collidepoint((prj.x, prj.y)):
                 prj.remove = True
+
+            for enemy in Enemy.enemies:
+                if enemy.rect.collidepoint((prj.x, prj.y)):
+                    enemy.remove = True
 
 
 class Game(object):
@@ -46,7 +49,7 @@ class Game(object):
 
         self.map = Map()
         self.chr = Character(HALF_WIDTH, HALF_HEIGHT)
-        self.enm = Enemy()
+        Enemy.enemies.append(Enemy())
         self.gom = GameObjectManager(WIDTH, HEIGHT)
         self.camera = Camera(WIDTH, HEIGHT)
 
@@ -98,7 +101,8 @@ class Game(object):
             self.map.render(self.windowSurface, self.camera)
             self.windowSurface.blit(self.text ,self.textRect)
             self.chr.render(self.windowSurface)
-            self.enm.render(self.windowSurface)
+            Enemy.update()
+            Enemy.render(self.windowSurface)
             self.gom.check_boundry()
             Projectile.update(self.windowSurface)
             pygame.display.update()

@@ -44,8 +44,19 @@ class Character(object):
 
 
 class Enemy(object):
-    def __init__(self):
-        self.pos = Vec2d(200, 200)
+    enemies = []
 
-    def render(self, surface):
-        pygame.draw.circle(surface, Color("grey"), self.pos, 10)
+    def __init__(self):
+        self.rect = self.rect = Rect(200, 200, 10, 10)
+        self.remove = False
+
+    @classmethod
+    def render(cls, surface):
+        for enemy in cls.enemies:
+            pygame.draw.circle(surface, Color("grey"), (enemy.rect.centerx, enemy.rect.centery), 10)
+
+    @classmethod
+    def update(cls):
+        for obj in cls.enemies:
+            if obj.remove:
+                cls.enemies.remove(obj)
