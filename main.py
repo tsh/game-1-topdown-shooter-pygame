@@ -100,9 +100,9 @@ class Game(object):
 
             self.map.render(self.windowSurface, self.camera)
             self.windowSurface.blit(self.text ,self.textRect)
-            self.chr.render(self.windowSurface)
+            self.chr.draw(self.windowSurface)
             Enemy.update()
-            Enemy.render(self.windowSurface)
+            Enemy.draw_all(self.windowSurface)
             self.gom.check_boundry()
             Projectile.update(self.windowSurface)
             pygame.display.update()

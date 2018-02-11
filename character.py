@@ -1,12 +1,12 @@
-import pygame
 from pygame.locals import *
 from pygame import Rect
 from pymunk.vec2d import Vec2d
 
 from projectiles import Projectile
+from bases import Drawable
 
 
-class Character(object):
+class Character(Drawable):
     LEFT = 'left'
     RIGHT = 'right'
     FORWARD = 'forward'
@@ -18,9 +18,7 @@ class Character(object):
         self.rect.centerx = center_x
         self.rect.centery = center_y
         self.speed = 10
-
-    def render(self, surface):
-        pygame.draw.circle(surface, Color("green"), (self.rect.centerx, self.rect.centery), self.size)
+        self.color = Color('Green')
 
     def move(self, direction):
         if direction == self.LEFT:
@@ -43,17 +41,19 @@ class Character(object):
         Projectile.projectiles.append(prj)
 
 
-class Enemy(object):
+class Enemy(Drawable):
     enemies = []
 
     def __init__(self):
         self.rect = self.rect = Rect(200, 200, 10, 10)
         self.remove = False
+        self.color = Color('Grey')
+        self.size = 10
 
     @classmethod
-    def render(cls, surface):
+    def draw_all(cls, surface):
         for enemy in cls.enemies:
-            pygame.draw.circle(surface, Color("grey"), (enemy.rect.centerx, enemy.rect.centery), 10)
+            enemy.draw(surface)
 
     @classmethod
     def update(cls):
